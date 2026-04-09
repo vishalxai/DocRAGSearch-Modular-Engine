@@ -16,6 +16,8 @@ data/
 faiss_index/
 chroma_db/
 *.pdf
+# Qdrant Database
+qdrant_db/
 
 # OS generated files
 .DS_Store
