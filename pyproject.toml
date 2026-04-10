@@ -18,5 +18,6 @@ dependencies = [
     "qdrant-client>=1.17.1",
     "requests>=2.33.1",
     "streamlit>=1.56.0",
+    "watchdog>=6.0.0",
     "wikipedia>=1.4.0",
 ]
