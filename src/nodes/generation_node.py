@@ -9,23 +9,23 @@ class GenerationNode:
     Worker node responsible for taking the retrieved context and user question,
     and generating a final answer using an LLM.
     """
-    
+
     def __init__(self, llm):
         """Initialize with a LangChain LLM (ChatOpenAI) object."""
         self.llm = llm
-        
+
         # 1. Define the Enterprise Guardrail Prompt
+        # Added smarter logic to distinguish between Web and DB context
         self.prompt = PromptTemplate(
-            template="""You are a strict, analytical assistant for question-answering tasks.
-            Use the following pieces of retrieved context to answer the question.
-            If the answer is not contained within the context, you must strictly say "I do not know based on the provided documents."
-            Do not use your pre-trained knowledge to answer.
-            Keep the answer concise.
+            template="""You are an analytical assistant. 
+            Use the retrieved context to answer the question. 
+
+            - If the context is from a Web Search, provide a helpful summary.
+            - If the context is from a Document Database, be extremely precise and do not add outside info.
+            - If the context is clearly irrelevant or empty, say "I do not know based on the provided documents."
 
             Question: {question} 
-
             Context: {context} 
-
             Answer:""",
             input_variables=["question", "context"],
         )
@@ -60,5 +60,3 @@ class GenerationNode:
         
         # 6. Write the final answer back to the clipboard
         return {"answer": response.content}
-    
-    
