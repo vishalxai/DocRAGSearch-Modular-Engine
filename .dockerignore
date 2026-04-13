@@ -1,0 +1,8 @@
+# .dockerignore
+.venv
+.env
+qdrant_db/
+__pycache__/
+*.pyc
+.git/
+.DS_Store
