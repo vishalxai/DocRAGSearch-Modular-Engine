@@ -20,6 +20,16 @@ Unlike standard "Chat with PDF" wrappers that blindly retrieve context or halluc
 * **UI & Package Management:** Streamlit & `uv`
 * **Infrastructure:** Docker & Docker Desktop
 
+## graph TD
+    A[User Query] --> B{Router Node}
+    B -->|Technical| C[Vector Store Retrieval]
+    B -->|Non-Technical| D[Guardrail Refusal]
+    C --> E{Grader Node}
+    E -->|Relevant| F[Generate Answer]
+    E -->|Irrelevant| G[Tavily Web Search]
+    G --> F
+    F --> H[LangSmith Tracing]
+
 ## 🛠 Getting Started
 
 ### Prerequisites
