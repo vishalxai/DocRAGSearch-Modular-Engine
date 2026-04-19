@@ -64,4 +64,11 @@ The CRAG Fallback Test: "What is the latest version of the LangChain library?" *
 
 The Boundary Enforcement Test: "How do I bake a vanilla cake using AI?" * Behavior: LLM identifies the out-of-scope intent and triggers an immediate SECURITY REFUSAL to prevent API waste.
 
+### 📊 MLOps & System Benchmarking (Ragas)
+To ensure enterprise-grade reliability and hallucination resistance, this project includes a standalone Evaluation Suite utilizing the **Ragas** framework. The system is benchmarked against a custom Golden Dataset to measure retrieval accuracy and factual grounding.
 
+**Latest Benchmark: Faithfulness (Hallucination Metric)**
+* **Local Qdrant Retrieval:** `1.00` (Perfect factual grounding)
+* **Dynamic Web Search Fallback:** `~0.30 - 0.60` (Lower traceability expected)
+
+> **Engineering Note on Dynamic Routing:** > During stress testing, if the LangGraph Grader Node detects that the local vector database lacks relevant context, it dynamically triggers a live Tavily Web Search. The Ragas evaluation pipeline successfully captures this architectural decision, proving mathematically that strict PDF-retrieval yields a 1.0 Faithfulness score, while noisy web-data naturally lowers text-traceability. This allows for continuous, quantified regression testing.

@@ -1,0 +1,18 @@
+[
+  {
+    "question": "What is the core definition of Machine Learning according to the document?",
+    "ground_truth": "Machine Learning is a branch of AI that focuses on building systems that can learn from data and improve over time without being explicitly programmed."
+  },
+  {
+    "question": "How does the document define the difference between Data Drift and Concept Drift?",
+    "ground_truth": "Data Drift is a shift in input feature distribution between training and production, while Concept Drift is a change in the underlying relationship between features and the target over time."
+  },
+  {
+    "question": "What is the Population Stability Index (PSI) used for?",
+    "ground_truth": "PSI is a technique used to detect Data Drift by comparing the distributions of features in production versus training data. A PSI value >= 0.2 indicates significant drift."
+  },
+  {
+    "question": "Explain the difference between Supervised and Unsupervised learning as per the text.",
+    "ground_truth": "Supervised learning uses labelled data for training, while unsupervised learning works with unlabeled data to find hidden patterns or relationships."
+  }
+]
