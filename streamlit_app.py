@@ -28,13 +28,13 @@ def load_systems():
     processor = DocumentProcessor(chunk_size=1000, chunk_overlap=200)
     db_manager = QdrantManager()
     
-    # Init LLM via OpenRouter
+
+    # Init LLM via Official OpenAI API
     llm = ChatOpenAI(
-        openai_api_base="https://openrouter.ai/api/v1",
-        openai_api_key=os.getenv("OPENAI_API_KEY"),
-        model_name="openai/gpt-4o-mini", 
-        temperature=0
-    )
+    api_key=os.getenv("OPENAI_API_KEY"), # Use the $5 key
+    model="gpt-4o-mini", # Use the official model name
+    temperature=0
+)
     
     # Build Graph Engine
     retriever = db_manager.get_retriever(search_kwargs={"k": 3})
@@ -80,7 +80,7 @@ with st.sidebar:
                 
                 # 3. Push the new chunks to Qdrant
                 st.info(f"Embedding {len(chunks)} chunks...")
-                db_manager.build_index(chunks)
+                db_manager.add_documents(chunks)
                 
             st.success("Ingestion Complete! The AI now knows this information.")
 
